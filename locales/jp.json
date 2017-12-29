@@ -1,0 +1,16 @@
+{
+  "links": {
+    "home": "ホーム",
+    "about": "アバウト",
+    "english": "英語",
+    "japaneese": "日本語"
+  },
+  "home": {
+    "title": "fg Matching Assist",
+    "introduction": "このサイトは"
+  },
+  "about": {
+    "title": "À propos",
+    "introduction": "Cette page est faite pour vous donner plus d'informations."
+  }
+}
