@@ -54,7 +54,7 @@
     </v-content>
 
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+      <span>&copy; 2018</span>
     </v-footer>
   </v-app>
 </template>
@@ -67,10 +67,13 @@
         drawer: true,
         fixed: false,
         items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+          { icon: 'home', title: 'Welcome', to: '/' },
+          { icon: 'public', title: 'CreateRoom', to: '/inspire' },
+          { icon: 'search', title: 'Search', to: '/inspire' },
+          { icon: 'favorite', title: 'Donation', to: '/inspire' },
           { icon: 'person_add', title: 'Sign-Up', to: '/signUp' },
-          { icon: 'person', title: 'Sign-In', to: '/signIn' }
+          { icon: 'person', title: 'Sign-In', to: '/signIn' },
+          { icon: 'filter_list', title: 'Exclusion-List', to: '/inspire' }
         ],
         miniVariant: false,
         right: true,
