@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app light>
     <v-navigation-drawer
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -32,20 +32,14 @@
       >
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
       </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn 
+        icon
+        to='/signIn'
+      >
+        <v-icon>person</v-icon>
+      </v-btn>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -54,7 +48,7 @@
     </v-content>
 
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+      <span>&copy; 2018</span>
     </v-footer>
   </v-app>
 </template>
@@ -64,13 +58,16 @@
     data () {
       return {
         clipped: false,
-        drawer: true,
+        drawer: false,
         fixed: false,
         items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+          { icon: 'home', title: 'Welcome', to: '/' },
+          { icon: 'public', title: 'CreateRoom', to: '/inspire' },
+          { icon: 'search', title: 'Search', to: '/inspire' },
+          { icon: 'favorite', title: 'Donation', to: '/inspire' },
           { icon: 'person_add', title: 'Sign-Up', to: '/signUp' },
-          { icon: 'person', title: 'Sign-In', to: '/signIn' }
+          { icon: 'person', title: 'Sign-In', to: '/signIn' },
+          { icon: 'filter_list', title: 'Exclusion-List', to: '/inspire' }
         ],
         miniVariant: false,
         right: true,

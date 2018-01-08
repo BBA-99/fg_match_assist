@@ -1,0 +1,22 @@
+export const RegionType = {
+    "ja":{
+        REGION_TYPE_JAPAN:{
+            name:"日本",
+            value:"ja"
+        },
+        REGION_TYPE_OTHER:{
+            name:"その他",
+            value:"other"
+        }
+    },
+    "en":{
+        REGION_TYPE_JAPAN:{
+            name:"JAPAN",
+            value:"ja"
+        },
+        REGION_TYPE_OTHER:{
+            name:"OTHER",
+            value:"other"
+        }
+    },
+}
