@@ -62,12 +62,13 @@
         fixed: false,
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
-          { icon: 'public', title: 'CreateRoom', to: '/inspire' },
-          { icon: 'search', title: 'Search', to: '/inspire' },
-          { icon: 'favorite', title: 'Donation', to: '/inspire' },
+          { icon: 'public', title: 'CreateRoom', to: '/createroom' },
+          { icon: 'search', title: 'Search', to: '/search' },
+          { icon: 'favorite', title: 'Donation', to: '/donation' },
           { icon: 'person_add', title: 'Sign-Up', to: '/signUp' },
           { icon: 'person', title: 'Sign-In', to: '/signIn' },
-          { icon: 'filter_list', title: 'Exclusion-List', to: '/inspire' }
+          { icon: 'filter_list', title: 'Exclusion-List', to: '/exclusionlist' },
+          { icon: 'person', title: 'profile', to: '/profile' }
         ],
         miniVariant: false,
         right: true,

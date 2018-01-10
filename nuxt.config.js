@@ -16,7 +16,8 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
-  plugins: ['~/plugins/vuetify.js','~/plugins/i18n.js'],
+  mode: 'spa',
+  plugins: ['~/plugins/vuetify.js','~/plugins/i18n.js','~/plugins/auth.js'],
   router: {
     middleware: 'i18n'
   },

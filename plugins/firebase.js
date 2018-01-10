@@ -1,6 +1,8 @@
 import firebase from 'firebase'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
+import 'firebase/auth'
+import 'firebase/database'
 
 if (!firebase.apps.length) {
   firebase.initializeApp(
@@ -14,7 +16,7 @@ if (!firebase.apps.length) {
     }
   )
 }
-
+export const TwitterProvider = new firebase.auth.TwitterAuthProvider()
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider()
 export const auth = firebase.auth()
 export const DB = firebase.database()

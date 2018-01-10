@@ -1,10 +1,11 @@
-import firebase from '~/plugins/firebase'
+import {auth} from '~/plugins/firebase'
 
-function auth () {
+export default (context) => {
+  const {store} = context
   return new Promise((resolve, reject) => {
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(user => {
+      store.commit('setUser', user)
       resolve(user || false)
     })
   })
 }
-export default auth
