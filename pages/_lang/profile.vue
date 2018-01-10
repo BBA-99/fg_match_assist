@@ -5,7 +5,7 @@
       <blockquote class="blockquote">
         &#8220;Profile&#8221;
         <h1 class="red">Hello {{ name }}!</h1>
-        <h1 class="red">Hello {{ user }}!</h1>
+        
       </blockquote>
     </v-flex>
   </v-layout>
@@ -15,8 +15,7 @@
 
 export default {
   computed: {
-    name () { return this.$store.state.locale },
-    user () { return this.$store.state.user }
+    name () { return this.$store.state.locale }
   }
 }
 </script>

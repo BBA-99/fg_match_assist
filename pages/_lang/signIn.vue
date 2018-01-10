@@ -1,15 +1,37 @@
 <template>
   <v-layout>
     <v-flex text-xs-center>
-      <img src="/v.png" alt="Vuetify.js" class="mb-5">
+      
       <blockquote class="blockquote">
-        &#8220;First, solve the problem. Then, write the code.&#8221;
-        <footer>
-          <small>
-            <em>&mdash;buba</em>
-          </small>
-        </footer>
+        <v-btn class="signIn mb-2" primary @click.native="twitterSignIn">Twitter Sign In</v-btn>
+        <v-btn class="signIn mb-2" primary @click.native="googleSignIn">Google Sign In</v-btn>
       </blockquote>
     </v-flex>
   </v-layout>
 </template>
+
+<script>
+export default {
+  methods: {
+    twitterSignIn () {
+      this.$store.dispatch('signInWithTwitter').then(() => {
+        console.log('inside then statement on login from twitter')
+      }).catch((e) => {
+        console.log(e.message)
+      })
+    },
+    googleSignIn () {
+      this.$store.dispatch('signInWithGoogle').then(() => {
+        console.log('inside then statement on login from google')
+      }).catch((e) => {
+        console.log(e.message)
+      })
+    }
+  }
+}
+</script>
+
+<style lang="css">
+.signIn {
+}
+</style>

@@ -7,7 +7,8 @@ const createStore = () => {
       sidebar: false,
       locales: ['en', 'jp'],
       locale: 'en',
-      user: null
+      user: null,
+      profile: null
     },
     getters: {
       activeUser: (state, getters) => {
@@ -31,7 +32,7 @@ const createStore = () => {
         })
       },
       signOut ({commit}) {
-        auth.signOut().then(() => {
+        return auth.signOut().then(() => {
           commit('setUser', null)
         }).catch(err => console.log(err))
       }
@@ -47,6 +48,9 @@ const createStore = () => {
       },
       setUser (state, payload) {
         state.user = payload
+        if (!state.user) {
+          state.profile = null
+        }
       }
     }
   })

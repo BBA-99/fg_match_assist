@@ -34,12 +34,39 @@
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn 
-        icon
-        to='/signIn'
-      >
-        <v-icon>person</v-icon>
-      </v-btn>
+
+      <div v-if="user" id="user" class="text-xs-center">
+        <v-menu
+          offset-x
+          :close-on-content-click="false"
+          :nudge-top="200"
+          v-model="menu">
+          <v-btn icon slot="activator"><v-icon medium>settings</v-icon></v-btn>
+            <v-card>
+              <v-list>
+                <v-list-tile avatar>
+                  <v-list-tile-avatar>
+                    <img :src="$store.state.user.photoURL" alt="John">
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title v-if="user.displayName">{{user.displayName}}</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+                <v-divider></v-divider>
+
+                <v-list-tile>
+                  <v-spacer></v-spacer>
+                  <v-list-tile-action>
+                    <v-btn primary class="mt-2" color="primary" @click.native="signOut">
+                      signOut
+                    </v-btn>
+                  </v-list-tile-action>
+                </v-list-tile>
+              </v-list>
+            </v-card>
+        </v-menu>
+
+      </div>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -62,17 +89,27 @@
         fixed: false,
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
+          { icon: 'person', title: 'Sign-In', to: '/signIn' },
+          { icon: 'person', title: 'profile', to: '/profile' },
           { icon: 'public', title: 'CreateRoom', to: '/createroom' },
           { icon: 'search', title: 'Search', to: '/search' },
           { icon: 'favorite', title: 'Donation', to: '/donation' },
-          { icon: 'person_add', title: 'Sign-Up', to: '/signUp' },
-          { icon: 'person', title: 'Sign-In', to: '/signIn' },
-          { icon: 'filter_list', title: 'Exclusion-List', to: '/exclusionlist' },
-          { icon: 'person', title: 'profile', to: '/profile' }
+          { icon: 'filter_list', title: 'Exclusion-List', to: '/exclusionlist' }
         ],
         miniVariant: false,
         right: true,
+        menu: false,
         title: 'fg Matching Assist'
+      }
+    },
+    computed: {
+      user () {
+        return this.$store.getters.activeUser
+      }
+    },
+    methods: {
+      signOut () {
+        this.$store.dispatch('signOut').then(() => this.$router.replace({ path: '/signIn' }))
       }
     }
   }
