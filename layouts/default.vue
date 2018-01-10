@@ -24,6 +24,13 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
+        <v-snackbar
+        :timeout=6000
+        v-model="snackbar"
+      >
+        Sign Out
+        <v-btn dark flat @click.native="snackbar = false">Close</v-btn>
+    </v-snackbar>
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn 
@@ -99,7 +106,8 @@
         miniVariant: false,
         right: true,
         menu: false,
-        title: 'fg Matching Assist'
+        title: 'fg Matching Assist',
+        snackbar: false
       }
     },
     computed: {
@@ -109,6 +117,7 @@
     },
     methods: {
       signOut () {
+        this.snackbar = true
         this.$store.dispatch('signOut').then(() => this.$router.replace({ path: '/signIn' }))
       }
     }
