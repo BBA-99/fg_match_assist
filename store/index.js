@@ -51,6 +51,9 @@ const createStore = () => {
         if (!state.user) {
           state.profile = null
         }
+      },
+      setProfile (state, payload) {
+        state.profile = payload
       }
     }
   })

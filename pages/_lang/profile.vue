@@ -1,12 +1,15 @@
 <template>
   <v-layout>
     <v-flex text-xs-center>
-      <img src="/v.png" alt="Vuetify.js" class="mb-5">
       <blockquote class="blockquote">
         &#8220;Profile&#8221;
         <h1 class="red">Hello {{ name }}!</h1>
+        <v-icon medium>fa-edit</v-icon>
+        <v-icon medium>settings</v-icon>
+
         
       </blockquote>
+
     </v-flex>
   </v-layout>
 </template>
@@ -15,7 +18,7 @@
 
 export default {
   computed: {
-    name () { return this.$store.state.locale }
+    name () { return this.$store.getters.activeUser }
   }
 }
 </script>

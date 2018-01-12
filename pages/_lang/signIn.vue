@@ -3,8 +3,8 @@
     <v-flex text-xs-center>
       
       <blockquote class="blockquote">
-        <v-btn class="signIn mb-2" primary @click.native="twitterSignIn">Twitter Sign In</v-btn>
-        <v-btn class="signIn mb-2" primary @click.native="googleSignIn">Google Sign In</v-btn>
+        <v-btn class=" twitterSignIn mb-2" primary @click.native="twitterSignIn">Twitter Sign In</v-btn>
+        <v-btn class=" googleSignIn mb-2" primary @click.native="googleSignIn">Google Sign In</v-btn>
       </blockquote>
     </v-flex>
   </v-layout>
@@ -32,6 +32,11 @@ export default {
 </script>
 
 <style lang="css">
-.signIn {
+.twitterSignIn {
+
+}
+
+.googleSignIn {
+
 }
 </style>
