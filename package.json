@@ -11,14 +11,14 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "firebase": "^4.8.1",
-    "nuxt": "^1.0.0-rc11",
-    "vue-i18n": "^7.3.3",
-    "vuetify": "^1.0.0-beta.4"
+    "firebase": "^4.8.2",
+    "nuxt": "^1.0.0",
+    "vue-i18n": "^7.4.0",
+    "vuetify": "^0.17.6"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "eslint": "^4.14.0",
+    "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-html": "^3.1.1",
