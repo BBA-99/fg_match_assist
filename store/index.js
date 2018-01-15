@@ -8,11 +8,18 @@ const createStore = () => {
       locales: ['en', 'jp'],
       locale: 'en',
       user: null,
-      profile: null
+      profile: {
+        name: '',
+        email: '',
+        fg_exp: null
+      }
     },
     getters: {
       activeUser: (state, getters) => {
         return state.user
+      },
+      activeProfile: (state, getters) => {
+        return state.profile
       }
     },
     actions: {
@@ -35,6 +42,16 @@ const createStore = () => {
         return auth.signOut().then(() => {
           commit('setUser', null)
         }).catch(err => console.log(err))
+      },
+      loadProfile ({commit}) {
+        return new Promise((resolve) => {
+          commit('setProfile', {
+            name: 'test',
+            email: 'test@test.com',
+            fg_exp: null
+          })
+          resolve()
+        })
       }
     },
     mutations: {
@@ -49,14 +66,19 @@ const createStore = () => {
       setUser (state, payload) {
         state.user = payload
         if (!state.user) {
-          state.profile = null
+          state.profile = {
+            name: '',
+            email: '',
+            fg_exp: null
+          }
         }
       },
       setProfile (state, payload) {
-        state.profile = payload
+        state.profile.name = payload.name
+        state.profile.email = payload.email
+        state.profile.fg_exp = payload.fg_exp
       }
     }
   })
 }
-
 export default createStore
