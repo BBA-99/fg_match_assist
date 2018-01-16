@@ -1,5 +1,5 @@
 import Vuex from 'vuex'
-import {auth, GoogleProvider, TwitterProvider} from '~/plugins/firebase'
+import {auth, DB, GoogleProvider, TwitterProvider} from '~/plugins/firebase'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -44,13 +44,15 @@ const createStore = () => {
         }).catch(err => console.log(err))
       },
       loadProfile ({commit}) {
-        return new Promise((resolve) => {
+        if (!this.state.user) {
+          return
+        }
+        return DB.collection('users').doc(this.state.user.uid).get().then((querySnapshot) => {
           commit('setProfile', {
-            name: 'test',
-            email: 'test@test.com',
-            fg_exp: null
+            name: querySnapshot.data()['name'],
+            email: querySnapshot.data()['email'],
+            fg_exp: querySnapshot.data()['fg_exp']
           })
-          resolve()
         })
       }
     },
