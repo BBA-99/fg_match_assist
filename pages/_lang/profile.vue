@@ -9,7 +9,7 @@
       </v-avatar>
       <v-form v-model="valid" ref="form" lazy-validation>
         <v-text-field
-          label="DisplayName"
+          :label="nameLavel"
           v-model="name"
           :rules="nameRules"
           :counter="15"
@@ -51,6 +51,7 @@ export default {
       valid: true,
       avatarSize: '100px',
       name: this.$store.state.profile.name,
+      nameLavel: this.$t('profile.displayName'),
       nameRules: [
         (v) => !!v || 'Name is required',
         (v) => (v && v.length <= 15) || 'Name must be less than 15 characters'

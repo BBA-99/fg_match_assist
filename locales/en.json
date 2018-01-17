@@ -1,4 +1,7 @@
 {
+  "profile": {
+    "displayName": "DisplayName"
+  },
   "links": {
     "home": "Home",
     "about": "About",

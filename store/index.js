@@ -47,22 +47,22 @@ const createStore = () => {
         if (!this.state.user) {
           return
         }
-        if (DB.collection('users').doc(this.state.user.uid).exists) {
-          return DB.collection('users').doc(this.state.user.uid).get().then((querySnapshot) => {
+        return DB.collection('users').doc(this.state.user.uid).get().then((querySnapshot) => {
+          if (querySnapshot.exists) {
             commit('setProfile', {
               name: querySnapshot.data()['name'],
               email: querySnapshot.data()['email'],
               fg_exp: querySnapshot.data()['fg_exp']
             })
-          })
-        } else {
-          // 初めての人はログイン先から情報を持ってくる
-          commit('setProfile', {
-            name: this.state.user.displayName,
-            email: this.state.user.email,
-            fg_exp: null
-          })
-        }
+          } else {
+            // 初めての人はログイン先から情報を持ってくる
+            commit('setProfile', {
+              name: this.state.user.displayName,
+              email: this.state.user.email,
+              fg_exp: null
+            })
+          }
+        })
       }
     },
     mutations: {

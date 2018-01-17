@@ -1,4 +1,7 @@
 {
+  "profile": {
+    "displayName": "表示する名前"
+  },
   "links": {
     "home": "ホーム",
     "about": "アバウト",
