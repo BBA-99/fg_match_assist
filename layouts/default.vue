@@ -30,7 +30,7 @@
       :right = true
       v-model="snackbar"
     >
-      Sign Out!!
+      You signed out
     </v-snackbar>
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
@@ -42,7 +42,15 @@
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-
+      <v-select
+        v-model="lang"
+        :items="langItems"
+        item-text='display'
+        item-value="value"
+        single-line
+        bottom
+      >
+      </v-select>
       <div v-if="user" id="user" class="text-xs-center">
         <v-menu
           offset-x
@@ -66,7 +74,7 @@
                   <v-spacer></v-spacer>
                   <v-list-tile-action>
                     <v-btn primary class="mt-2" color="primary" @click.native="signOut">
-                      signOut
+                      {{$t('default.signOut')}}
                     </v-btn>
                   </v-list-tile-action>
                 </v-list-tile>
@@ -108,12 +116,24 @@
         right: true,
         menu: false,
         title: 'fg Matching Assist',
-        snackbar: false
+        snackbar: false,
+        langItems: [
+          { display: 'Japanese', value: 'jp' },
+          { display: 'English', value: 'en' }
+        ]
       }
     },
     computed: {
       user () {
         return this.$store.getters.activeUser
+      },
+      lang: {
+        get () {
+          return this.$store.state.locale
+        },
+        set (value) {
+          this.$store.commit('SET_LANG', value)
+        }
       }
     },
     methods: {
