@@ -2,6 +2,9 @@
   "profile": {
     "displayName": "表示する名前"
   },
+  "default": {
+    "signOut": "サインアウト"
+  },  
   "links": {
     "home": "ホーム",
     "about": "アバウト",

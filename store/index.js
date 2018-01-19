@@ -43,6 +43,9 @@ const createStore = () => {
           commit('setUser', null)
         }).catch(err => console.log(err))
       },
+      changeLang ({commit}, payload) {
+        commit('SET_LANG', payload)
+      },
       loadProfile ({commit}) {
         if (!this.state.user) {
           return
@@ -70,6 +73,8 @@ const createStore = () => {
         state.sidebar = !state.sidebar
       },
       SET_LANG (state, locale) {
+        console.log('SET_LANG')
+        console.log(locale)
         if (state.locales.indexOf(locale) !== -1) {
           state.locale = locale
         }

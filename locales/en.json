@@ -2,6 +2,9 @@
   "profile": {
     "displayName": "DisplayName"
   },
+  "default": {
+    "signOut": "SignOut"
+  },
   "links": {
     "home": "Home",
     "about": "About",
