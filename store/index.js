@@ -11,7 +11,8 @@ const createStore = () => {
       profile: {
         name: '',
         email: '',
-        fg_exp: null
+        fg_exp: null,
+        region: null
       }
     },
     getters: {

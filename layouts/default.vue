@@ -30,7 +30,7 @@
       :right = true
       v-model="snackbar"
     >
-      You signed out
+      {{$t('default.signOutDone')}}
     </v-snackbar>
     <v-toolbar fixed app :clipped-left="clipped">
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
@@ -49,6 +49,7 @@
         item-value="value"
         single-line
         bottom
+        v-on:change="changeLang"
       >
       </v-select>
       <div v-if="user" id="user" class="text-xs-center">
@@ -140,6 +141,12 @@
       signOut () {
         this.snackbar = true
         this.$store.dispatch('signOut').then(() => this.$router.replace({ path: '/signIn' }))
+      },
+      changeLang (lang) {
+        console.log('changeLang')
+        console.log(lang)
+        location.href = (this.$router.currentRoute.path + '?locale=' + lang)
+        // this.$router.push(this.$router.currentRoute.path + '?locale=' + lang)
       }
     }
   }

@@ -22,12 +22,21 @@
           required
         ></v-text-field>
         <v-select
-          label="fg_exp"
+          :label="fg_expLavel"
           v-model="fg_exp"
           item-text='display'
           item-value="value"
           :items="fg_exp_items"
-          :rules="[v => !!v || 'fg_exp is required']"
+          :rules="fg_expRules"
+          required
+        ></v-select>
+        <v-select
+          :label="regionLavel"
+          v-model="region"
+          item-text='display'
+          item-value="value"
+          :items="region_items"
+          :rules="regionRules"
           required
         ></v-select>
         <v-btn
@@ -51,17 +60,19 @@ export default {
       valid: true,
       avatarSize: '100px',
       name: this.$store.state.profile.name,
-      nameLavel: this.$t('profile.displayName'),
+      nameLavel: this.$t('profile.displayName.lavel'),
       nameRules: [
-        (v) => !!v || 'Name is required',
-        (v) => (v && v.length <= 15) || 'Name must be less than 15 characters'
+        (v) => !!v || this.$t('profile.displayName.required'),
+        (v) => (v && v.length <= 15) || this.$t('profile.displayName.format')
       ],
       email: this.$store.state.profile.email,
+      emailLavel: this.$t('profile.e-mail.lavel'),
       emailRules: [
-        (v) => !!v || 'E-mail is required',
-        (v) => (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v)) || 'E-mail must be valid' // eslint-disable-line
+        (v) => !!v || this.$t('profile.e-mail.required'),
+        (v) => (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v)) || this.$t('profile.e-mail.format') // eslint-disable-line
       ],
       fg_exp: this.$store.state.profile.fg_exp,
+      fg_expLavel: this.$t('profile.fg_exp.lavel'),
       fg_exp_items: [
         { display: 'Less than 1 year', value: -1 },
         { display: '1 year', value: 1 },
@@ -74,7 +85,12 @@ export default {
         { display: '8 years', value: 8 },
         { display: '9 years', value: 9 },
         { display: 'Over 10 years', value: 10 }
-      ]
+      ],
+      fg_expRules: [ (v) => !!v || this.$t('profile.fg_exp.required') ],
+      region: this.$store.state.profile.region,
+      regionLavel: this.$t('profile.region.lavel'),
+      region_items: [],
+      regionRules: [ (v) => !!v || this.$t('profile.region.required') ]
     }
   },
   async fetch (context) {

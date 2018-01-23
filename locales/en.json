@@ -1,9 +1,32 @@
 {
   "profile": {
-    "displayName": "DisplayName"
+    "displayName": {
+      "lavel": "DisplayName",
+      "required": "DisplayName is required",
+      "format": "Name must be less than 15 characters"
+    },
+    "e-mail": {
+      "lavel": "E-mail",
+      "required": "E-mail is required",
+      "format": "E-mail must be valid"
+    },
+    "fg_exp": {
+      "lavel": "fightingGame experience",
+      "required": "fightingGame experience is required",
+      "format": ""
+    },
+    "region": {
+      "lavel": "region",
+      "required": "region is required",
+      "format": ""
+    }
   },
   "default": {
-    "signOut": "SignOut"
+    "signOut": "SignOut",
+    "signOutDone": "You sign out"
+  },
+  "index": {
+    "siteTitle": "fg Maching Assist"
   },
   "links": {
     "home": "Home",
