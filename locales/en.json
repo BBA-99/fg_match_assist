@@ -22,6 +22,13 @@
     }
   },
   "default": {
+    "welcome": "Welcome",
+    "signIn": "Sign in",
+    "profile": "Profile",
+    "createRoom": "Create room",
+    "search": "Search",
+    "donation": "Donation",
+    "exclusionList": "Exclusion list",
     "signOut": "SignOut",
     "signOutDone": "You sign out"
   },

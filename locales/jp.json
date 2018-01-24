@@ -22,6 +22,13 @@
     }
   },
   "default": {
+    "welcome": "Welcome",
+    "signIn": "サインイン",
+    "profile": "プロフィール",
+    "createRoom": "ルームを作る",
+    "search": "検索",
+    "donation": "寄付",
+    "exclusionList": "除外リスト",
     "signOut": "サインアウト",
     "signOutDone": "サインアウトしました"
   },

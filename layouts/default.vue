@@ -105,13 +105,13 @@
         drawer: false,
         fixed: false,
         items: [
-          { icon: 'home', title: 'Welcome', to: '/' },
-          { icon: 'person', title: 'Sign-In', to: '/signIn' },
-          { icon: 'person', title: 'profile', to: '/profile' },
-          { icon: 'public', title: 'CreateRoom', to: '/createroom' },
-          { icon: 'search', title: 'Search', to: '/search' },
-          { icon: 'favorite', title: 'Donation', to: '/donation' },
-          { icon: 'filter_list', title: 'Exclusion-List', to: '/exclusionlist' }
+          { icon: 'home', title: this.$t('default.welcome'), to: '/' },
+          { icon: 'person', title: this.$t('default.signIn'), to: '/signIn' },
+          { icon: 'person', title: this.$t('default.profile'), to: '/profile' },
+          { icon: 'public', title: this.$t('default.createRoom'), to: '/createroom' },
+          { icon: 'search', title: this.$t('default.search'), to: '/search' },
+          { icon: 'favorite', title: this.$t('default.donation'), to: '/donation' },
+          { icon: 'filter_list', title: this.$t('default.exclusionList'), to: '/exclusionlist' }
         ],
         miniVariant: false,
         right: true,

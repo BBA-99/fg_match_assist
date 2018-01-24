@@ -53,9 +53,13 @@
 
 <script>
 import {DB} from '~/plugins/firebase'
+import {RegionType} from '~/constants/region'
+import {FgExpType} from '~/constants/fg_exp'
 
 export default {
   data () {
+    const regionItem = (this.$store.state.locale === 'jp') ? RegionType.jp : RegionType.en
+    const fgExpItem = (this.$store.state.locale === 'jp') ? FgExpType.jp : FgExpType.en
     return {
       valid: true,
       avatarSize: '100px',
@@ -74,22 +78,25 @@ export default {
       fg_exp: this.$store.state.profile.fg_exp,
       fg_expLavel: this.$t('profile.fg_exp.lavel'),
       fg_exp_items: [
-        { display: 'Less than 1 year', value: -1 },
-        { display: '1 year', value: 1 },
-        { display: '2 years', value: 2 },
-        { display: '3 years', value: 3 },
-        { display: '4 years', value: 4 },
-        { display: '5 years', value: 5 },
-        { display: '6 years', value: 6 },
-        { display: '7 years', value: 7 },
-        { display: '8 years', value: 8 },
-        { display: '9 years', value: 9 },
-        { display: 'Over 10 years', value: 10 }
+        fgExpItem.FG_EXP_TYPE_LESS1,
+        fgExpItem.FG_EXP_TYPE_1,
+        fgExpItem.FG_EXP_TYPE_2,
+        fgExpItem.FG_EXP_TYPE_3,
+        fgExpItem.FG_EXP_TYPE_4,
+        fgExpItem.FG_EXP_TYPE_5,
+        fgExpItem.FG_EXP_TYPE_6,
+        fgExpItem.FG_EXP_TYPE_7,
+        fgExpItem.FG_EXP_TYPE_8,
+        fgExpItem.FG_EXP_TYPE_9,
+        fgExpItem.FG_EXP_TYPE_OVER10
       ],
       fg_expRules: [ (v) => !!v || this.$t('profile.fg_exp.required') ],
       region: this.$store.state.profile.region,
       regionLavel: this.$t('profile.region.lavel'),
-      region_items: [],
+      region_items: [
+        regionItem.REGION_TYPE_JAPAN,
+        regionItem.REGION_TYPE_OTHER
+      ],
       regionRules: [ (v) => !!v || this.$t('profile.region.required') ]
     }
   },
@@ -114,12 +121,14 @@ export default {
         this.$store.commit('setProfile', {
           name: this.name,
           email: this.email,
-          fg_exp: this.fg_exp
+          fg_exp: this.fg_exp,
+          region: this.region
         })
         DB.collection('users').doc(this.$store.state.user.uid).set({
           name: this.name,
           email: this.email,
-          fg_exp: this.fg_exp
+          fg_exp: this.fg_exp,
+          region: this.region
         })
       }
     },
