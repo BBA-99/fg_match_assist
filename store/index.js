@@ -12,7 +12,8 @@ const createStore = () => {
         name: '',
         email: '',
         fg_exp: null,
-        region: null
+        region: null,
+        introduction: ''
       }
     },
     getters: {
@@ -56,14 +57,18 @@ const createStore = () => {
             commit('setProfile', {
               name: querySnapshot.data()['name'],
               email: querySnapshot.data()['email'],
-              fg_exp: querySnapshot.data()['fg_exp']
+              fg_exp: querySnapshot.data()['fg_exp'],
+              region: querySnapshot.data()['region'],
+              introduction: querySnapshot.data()['introduction']
             })
           } else {
             // 初めての人はログイン先から情報を持ってくる
             commit('setProfile', {
               name: this.state.user.displayName,
               email: this.state.user.email,
-              fg_exp: null
+              fg_exp: null,
+              region: null,
+              introduction: ''
             })
           }
         })
@@ -86,7 +91,9 @@ const createStore = () => {
           state.profile = {
             name: '',
             email: '',
-            fg_exp: null
+            fg_exp: null,
+            region: null,
+            introduction: ''
           }
         }
       },
@@ -94,6 +101,8 @@ const createStore = () => {
         state.profile.name = payload.name
         state.profile.email = payload.email
         state.profile.fg_exp = payload.fg_exp
+        state.profile.region = payload.region
+        state.profile.introduction = payload.introduction
       }
     }
   })

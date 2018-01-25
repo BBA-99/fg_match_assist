@@ -39,6 +39,13 @@
           :rules="regionRules"
           required
         ></v-select>
+        <v-text-field
+          :label="introductionLavel"
+          v-model="introduction"
+          :rules="introductionRules"
+          :counter="50"
+          textarea
+        ></v-text-field>
         <v-btn
           @click="submit"
           :disabled="!valid"
@@ -97,7 +104,12 @@ export default {
         regionItem.REGION_TYPE_JAPAN,
         regionItem.REGION_TYPE_OTHER
       ],
-      regionRules: [ (v) => !!v || this.$t('profile.region.required') ]
+      regionRules: [ (v) => !!v || this.$t('profile.region.required') ],
+      introduction: this.$store.state.profile.introduction,
+      introductionLavel: this.$t('profile.introduction.lavel'),
+      introductionRules: [
+        (v) => (v && v.length <= 50) || this.$t('profile.introduction.format')
+      ]
     }
   },
   async fetch (context) {
@@ -122,13 +134,15 @@ export default {
           name: this.name,
           email: this.email,
           fg_exp: this.fg_exp,
-          region: this.region
+          region: this.region,
+          introduction: this.introduction
         })
         DB.collection('users').doc(this.$store.state.user.uid).set({
           name: this.name,
           email: this.email,
           fg_exp: this.fg_exp,
-          region: this.region
+          region: this.region,
+          introduction: this.introduction
         })
       }
     },

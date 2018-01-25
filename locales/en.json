@@ -3,7 +3,7 @@
     "displayName": {
       "lavel": "DisplayName",
       "required": "DisplayName is required",
-      "format": "Name must be less than 15 characters"
+      "format": "DisplayName must be less than 15 characters"
     },
     "e-mail": {
       "lavel": "E-mail",
@@ -11,14 +11,19 @@
       "format": "E-mail must be valid"
     },
     "fg_exp": {
-      "lavel": "fightingGame experience",
-      "required": "fightingGame experience is required",
+      "lavel": "FightingGame experience",
+      "required": "FightingGame experience is required",
       "format": ""
     },
     "region": {
-      "lavel": "region",
-      "required": "region is required",
+      "lavel": "Region",
+      "required": "Region is required",
       "format": ""
+    },
+    "introduction": {
+      "lavel": "Introduction",
+      "required": "",
+      "format": "Introduction must be less than 50 characters"
     }
   },
   "default": {
