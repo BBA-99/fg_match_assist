@@ -42,16 +42,29 @@
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-select
-        v-model="lang"
-        :items="langItems"
-        item-text='display'
-        item-value="value"
-        single-line
-        bottom
-        v-on:change="changeLang"
-      >
-      </v-select>
+      <v-menu>
+        <v-btn outline round slot="activator" >
+          <svg v-if="lang=='en'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30">
+            <clipPath id="t">
+              <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
+            </clipPath>
+            <path d="M0,0 v30 h60 v-30 z" fill="#00247d"/>
+            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+            <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#cf142b" stroke-width="4"/>
+            <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+            <path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6"/>
+          </svg>
+          <svg v-if="lang=='jp'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="60" height="30">
+            <rect fill="#fff" height="700" width="1000"/>
+            <circle fill="#b0313f" cx="490" cy="350" r="210"/>
+          </svg>
+        </v-btn>
+        <v-list>
+          <v-list-tile v-model="lang" v-for="item in langItems" v-bind:key="item.value">
+            <v-list-tile-title v-on:click="changeLang(item.value)">{{item.display}}</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
       <div v-if="user" id="user" class="text-xs-center">
         <v-menu
           offset-x
@@ -116,7 +129,7 @@
         miniVariant: false,
         right: true,
         menu: false,
-        title: 'fg Matching Assist',
+        title: 'FG Matching Assist',
         snackbar: false,
         langItems: [
           { display: 'Japanese', value: 'jp' },
