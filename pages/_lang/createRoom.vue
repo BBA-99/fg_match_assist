@@ -1,19 +1,7 @@
 <template>
-  <v-layout>
-    <v-flex text-xs-center>
-      <v-alert color="info" icon="info" dismissible v-model="successAlert" transition="slide-y-transition">
-        {{$t('alertMessage.success')}}
-      </v-alert>
-      <v-alert color="error" icon="warning" dismissible v-model="errorAlert" transition="slide-y-transition">
-        {{$t('alertMessage.error')}}
-      </v-alert>
-      <v-avatar
-        :size= "avatarSize"
-        v-if="$store.state.user"
-      >
-        <img :src="$store.state.user.photoURL" alt="image">
-      </v-avatar>
-      <v-form v-model="valid" ref="form" lazy-validation>
+  <v-form v-model="valid" ref="form" lazy-validation>
+    <v-layout row >
+      <v-flex xs5 >
         <v-text-field
           :label="nameLavel"
           v-model="name"
@@ -21,12 +9,19 @@
           :counter="15"
           required
         ></v-text-field>
+      </v-flex>
+      <v-spacer ></v-spacer>
+      <v-flex xs5 >
         <v-text-field
           label="E-mail"
           v-model="email"
           :rules="emailRules"
           required
         ></v-text-field>
+      </v-flex>
+    </v-layout>
+    <v-layout>
+      <v-flex xs5 >
         <v-select
           :label="fg_expLavel"
           v-model="fg_exp"
@@ -36,6 +31,9 @@
           :rules="fg_expRules"
           required
         ></v-select>
+      </v-flex>
+      <v-spacer ></v-spacer>
+      <v-flex xs5 >
         <v-select
           :label="regionLavel"
           v-model="region"
@@ -45,6 +43,10 @@
           :rules="regionRules"
           required
         ></v-select>
+      </v-flex>
+    </v-layout>
+    <v-layout>
+      <v-flex xs12 >
         <v-text-field
           :label="introductionLavel"
           v-model="introduction"
@@ -52,16 +54,20 @@
           :counter="50"
           textarea
         ></v-text-field>
+      </v-flex>
+    </v-layout>
+    <v-layout text-xs-center>
+      <v-flex text-xs-center>
         <v-btn
-          @click="submit"
+          @click="createRoom"
           :disabled="!valid"
         >
-          {{$t('profile.submit')}}
+          create room
         </v-btn>
-        <v-btn @click="clear">{{$t('profile.clear')}}</v-btn>
-      </v-form>
-    </v-flex>
-  </v-layout>
+        <v-btn @click="clear">clear</v-btn>
+      </v-flex>
+    </v-layout>
+  </v-form>
 </template>
 
 <script>
@@ -75,9 +81,6 @@ export default {
     const fgExpItem = (this.$store.state.locale === 'jp') ? FgExpType.jp : FgExpType.en
     return {
       valid: true,
-      successAlert: false,
-      errorAlert: false,
-      avatarSize: '100px',
       name: this.$store.state.profile.name,
       nameLavel: this.$t('profile.displayName.lavel'),
       nameRules: [
@@ -125,21 +128,24 @@ export default {
       return context.redirect('/signIn')
     }
     await context.store.dispatch('loadProfile')
+    if (!context.store.state.profile.fg_exp) {
+      return context.redirect('/profile')
+    }
   },
   computed: {
     activeUser () { return this.$store.getters.activeUser },
     activeProfile () { return this.$store.getters.activeProfile }
   },
   methods: {
-    submit () {
-      this.successAlert = false
-      this.errorAlert = false
+    createRoom () {
       if (!this.$store.state.user) {
         // 未ログインならリダイレクト
         this.$router.replace({ path: '/signIn' })
       }
       if (this.$refs.form.validate()) {
-        // 更新登録処理
+        console.log(DB)
+        // ROOM登録処理
+        /*
         this.$store.commit('setProfile', {
           name: this.name,
           email: this.email,
@@ -153,12 +159,8 @@ export default {
           fg_exp: this.fg_exp,
           region: this.region,
           introduction: this.introduction
-        }).then((data) => {
-          this.successAlert = true
-        }).catch((error) => {
-          this.errorAlert = true
-          console.log(error)
         })
+        */
       }
     },
     clear () {

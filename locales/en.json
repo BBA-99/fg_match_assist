@@ -24,7 +24,9 @@
       "lavel": "Introduction",
       "required": "",
       "format": "Introduction must be less than 50 characters"
-    }
+    },
+    "submit": "submit",
+    "clear" : "clear"
   },
   "default": {
     "welcome": "Welcome",
@@ -40,11 +42,9 @@
   "index": {
     "siteTitle": "fg Maching Assist"
   },
-  "links": {
-    "home": "Home",
-    "about": "About",
-    "english": "English version",
-    "french": "French version"
+  "alertMessage": {
+    "error": "Processing failed",
+    "success": "Processing succeeded"
   },
   "home": {
     "title": "Welcome",

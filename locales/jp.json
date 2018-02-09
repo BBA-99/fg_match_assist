@@ -1,4 +1,33 @@
 {
+  "createRoom": {
+    "displayName": {
+      "lavel": "表示する名前",
+      "required": "表示する名前の入力は必須です",
+      "format": "表示する名前は15文字以内で入力してください"
+    },
+    "e-mail": {
+      "lavel": "E-mail",
+      "required": "E-mailは必須入力です",
+      "format": "無効なE-mailの形式です"
+    },
+    "fg_exp": {
+      "lavel": "格闘ゲーム経験",
+      "required": "格闘ゲーム経験の入力は必須です",
+      "format": ""
+    },
+    "region": {
+      "lavel": "地域",
+      "required": "地域の入力は必須です",
+      "format": ""
+    },
+    "introduction": {
+      "lavel": "紹介文",
+      "required": "",
+      "format": "紹介文は50文字以内で入力してください"
+    },
+    "submit": "登録",
+    "clear" : "クリア"
+  },
   "profile": {
     "displayName": {
       "lavel": "表示する名前",
@@ -24,7 +53,9 @@
       "lavel": "紹介文",
       "required": "",
       "format": "紹介文は50文字以内で入力してください"
-    }
+    },
+    "submit": "登録",
+    "clear" : "クリア"
   },
   "default": {
     "welcome": "Welcome",
@@ -40,11 +71,9 @@
   "index": {
     "siteTitle": "サイト名"
   },
-  "links": {
-    "home": "ホーム",
-    "about": "アバウト",
-    "english": "英語",
-    "japaneese": "日本語"
+  "alertMessage": {
+    "error": "エラーが発生しました",
+    "success": "処理に成功しました"
   },
   "home": {
     "title": "fg Matching Assist",
