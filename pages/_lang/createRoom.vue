@@ -1,46 +1,36 @@
 <template>
   <v-form v-model="valid" ref="form" lazy-validation>
-    <v-layout row >
-      <v-flex xs5 >
-        <v-text-field
-          :label="nameLavel"
-          v-model="name"
-          :rules="nameRules"
-          :counter="15"
-          required
-        ></v-text-field>
-      </v-flex>
-      <v-spacer ></v-spacer>
-      <v-flex xs5 >
-        <v-text-field
-          label="E-mail"
-          v-model="email"
-          :rules="emailRules"
-          required
-        ></v-text-field>
+    <v-layout >
+      <v-flex>
+        <v-card>
+          <v-card-text>
+            {{roomCondition}}
+          </v-card-text>
+        </v-card>
       </v-flex>
     </v-layout>
     <v-layout>
-      <v-flex xs5 >
+      <v-flex xs12 >
         <v-select
-          :label="fg_expLavel"
-          v-model="fg_exp"
+          :label="titleLavel"
+          v-model="title"
           item-text='display'
           item-value="value"
-          :items="fg_exp_items"
-          :rules="fg_expRules"
+          :items="title_items"
+          :rules="titleRules"
           required
         ></v-select>
       </v-flex>
-      <v-spacer ></v-spacer>
-      <v-flex xs5 >
+    </v-layout>
+    <v-layout v-if="title != null">
+      <v-flex>
         <v-select
-          :label="regionLavel"
-          v-model="region"
+          :label="title_expLavel"
+          v-model="title_exp"
           item-text='display'
           item-value="value"
-          :items="region_items"
-          :rules="regionRules"
+          :items="title_exp_items"
+          :rules="title_expRules"
           required
         ></v-select>
       </v-flex>
@@ -58,13 +48,8 @@
     </v-layout>
     <v-layout text-xs-center>
       <v-flex text-xs-center>
-        <v-btn
-          @click="createRoom"
-          :disabled="!valid"
-        >
-          create room
-        </v-btn>
-        <v-btn @click="clear">clear</v-btn>
+        <v-btn @click="createRoom" :disabled="!valid">{{$t('createRoom.submit')}}</v-btn>
+        <v-btn @click="clear">{{$t('createRoom.clear')}}</v-btn>
       </v-flex>
     </v-layout>
   </v-form>
@@ -72,50 +57,36 @@
 
 <script>
 import {DB} from '~/plugins/firebase'
-import {RegionType} from '~/constants/region'
-import {FgExpType} from '~/constants/fg_exp'
+import {RoomConditionType} from '~/constants/roomCondition'
+import {TitleType} from '~/constants/title'
+import {ExpType as TitleExp} from '~/constants/exp'
 
 export default {
   data () {
-    const regionItem = (this.$store.state.locale === 'jp') ? RegionType.jp : RegionType.en
-    const fgExpItem = (this.$store.state.locale === 'jp') ? FgExpType.jp : FgExpType.en
+    const roomConditionItem = (this.$store.state.locale === 'jp') ? RoomConditionType.jp : RoomConditionType.en
+    const titleItem = (this.$store.state.locale === 'jp') ? TitleType.jp : TitleType.en
+    const titleExpItem = (this.$store.state.locale === 'jp') ? TitleExp.jp : TitleExp.en
     return {
       valid: true,
-      name: this.$store.state.profile.name,
-      nameLavel: this.$t('profile.displayName.lavel'),
-      nameRules: [
-        (v) => !!v || this.$t('profile.displayName.required'),
-        (v) => (v && v.length <= 15) || this.$t('profile.displayName.format')
+      roomCondition: roomConditionItem[this.$store.state.createRoom.roomCondition],
+      title: this.$store.state.createRoom.title,
+      titleLavel: this.$t('createRoom.title.lavel'),
+      title_items: [
+        { display: titleItem.DBFZ_PS.name, value: titleItem.DBFZ_PS.name },
+        { display: titleItem.DBFZ_X.name, value: titleItem.DBFZ_X.name }
       ],
-      email: this.$store.state.profile.email,
-      emailLavel: this.$t('profile.e-mail.lavel'),
-      emailRules: [
-        (v) => !!v || this.$t('profile.e-mail.required'),
-        (v) => (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v)) || this.$t('profile.e-mail.format') // eslint-disable-line
+      titleRules: [ (v) => !!v || this.$t('createRoom.title.required') ],
+      title_exp: this.$store.state.createRoom.title_exp,
+      title_expLavel: this.$t('createRoom.title_exp.lavel'),
+      title_exp_items: [
+        { display: titleExpItem.EXP_TYPE_BEGINNER.name, value: titleExpItem.EXP_TYPE_BEGINNER.name },
+        { display: titleExpItem.EXP_TYPE_NOVICE.name, value: titleExpItem.EXP_TYPE_NOVICE.name },
+        { display: titleExpItem.EXP_TYPE_ADVANCE.name, value: titleExpItem.EXP_TYPE_ADVANCE.name },
+        { display: titleExpItem.EXP_TYPE_STRATEGY.name, value: titleExpItem.EXP_TYPE_STRATEGY.name },
+        { display: titleExpItem.EXP_TYPE_RANKER.name, value: titleExpItem.EXP_TYPE_RANKER.name }
       ],
-      fg_exp: this.$store.state.profile.fg_exp,
-      fg_expLavel: this.$t('profile.fg_exp.lavel'),
-      fg_exp_items: [
-        fgExpItem.FG_EXP_TYPE_LESS1,
-        fgExpItem.FG_EXP_TYPE_1,
-        fgExpItem.FG_EXP_TYPE_2,
-        fgExpItem.FG_EXP_TYPE_3,
-        fgExpItem.FG_EXP_TYPE_4,
-        fgExpItem.FG_EXP_TYPE_5,
-        fgExpItem.FG_EXP_TYPE_6,
-        fgExpItem.FG_EXP_TYPE_7,
-        fgExpItem.FG_EXP_TYPE_8,
-        fgExpItem.FG_EXP_TYPE_9,
-        fgExpItem.FG_EXP_TYPE_OVER10
-      ],
-      fg_expRules: [ (v) => !!v || this.$t('profile.fg_exp.required') ],
-      region: this.$store.state.profile.region,
-      regionLavel: this.$t('profile.region.lavel'),
-      region_items: [
-        regionItem.REGION_TYPE_JAPAN,
-        regionItem.REGION_TYPE_OTHER
-      ],
-      regionRules: [ (v) => !!v || this.$t('profile.region.required') ],
+      title_expRules: [ (v) => !!v || this.$t('createRoom.title_exp.required') ],
+
       introduction: this.$store.state.profile.introduction,
       introductionLavel: this.$t('profile.introduction.lavel'),
       introductionRules: [

@@ -14,6 +14,11 @@ const createStore = () => {
         fg_exp: null,
         region: null,
         introduction: ''
+      },
+      createRoom: {
+        roomCondition: 'NOT_CREATED',
+        title: null,
+        title_exp: null
       }
     },
     getters: {

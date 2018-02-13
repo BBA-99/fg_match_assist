@@ -1,4 +1,23 @@
 {
+  "createRoom": {
+    "title": {
+      "lavel": "Title",
+      "required": "Title is required",
+      "format": ""
+    },
+    "title_exp": {
+      "lavel": "Title EXP",
+      "required": "Title-EXP is required",
+      "format": ""
+    },
+    "introduction": {
+      "lavel": "Introduction",
+      "required": "",
+      "format": "Introduction must be less than 50 characters"
+    },
+    "submit": "submit",
+    "clear" : "clear"
+  },
   "profile": {
     "displayName": {
       "lavel": "DisplayName",
