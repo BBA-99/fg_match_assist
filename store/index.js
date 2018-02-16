@@ -1,12 +1,15 @@
 import Vuex from 'vuex'
 import {auth, DB, GoogleProvider, TwitterProvider} from '~/plugins/firebase'
 
+const language = (window.navigator.languages && window.navigator.languages[0]) ||
+window.navigator.language || window.navigator.userLanguage || window.navigator.browserLanguage
+
 const createStore = () => {
   return new Vuex.Store({
     state: {
       sidebar: false,
       locales: ['en', 'jp'],
-      locale: 'en',
+      locale: (language === 'ja') ? 'jp' : 'en',
       user: null,
       profile: {
         name: '',
@@ -18,7 +21,8 @@ const createStore = () => {
       createRoom: {
         roomCondition: 'NOT_CREATED',
         title: null,
-        title_exp: null
+        title_exp: null,
+        targetLevel: null
       }
     },
     getters: {
