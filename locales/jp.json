@@ -10,6 +10,11 @@
       "required": "やりこみ度合いの入力は必須です",
       "format": ""
     },
+    "targetLevel": {
+      "lavel": "目標レベル",
+      "required": "目標レベルの入力は必須です",
+      "format": ""
+    },
     "introduction": {
       "lavel": "紹介文",
       "required": "",

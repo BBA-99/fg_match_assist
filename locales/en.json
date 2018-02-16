@@ -7,9 +7,14 @@
     },
     "title_exp": {
       "lavel": "Title EXP",
-      "required": "Title-EXP is required",
+      "required": "Title EXP is required",
       "format": ""
     },
+    "targetLevel": {
+      "lavel": "Target level",
+      "required": "Target level is required",
+      "format": ""
+    },    
     "introduction": {
       "lavel": "Introduction",
       "required": "",
