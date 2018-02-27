@@ -128,6 +128,30 @@ const createStore = () => {
         state.profile.fg_exp = payload.fg_exp
         state.profile.region = payload.region
         state.profile.introduction = payload.introduction
+      },
+      changeRoomcondition (state, payload) {
+        state.createRoom.roomCondition = 'NOT_CREATED'
+      },
+      setRoom (state, payload) {
+        state.createRoom.title = payload.title
+        state.createRoom.title_exp = payload.title_exp
+        state.createRoom.targetLevel = payload.targetLevel
+        state.createRoom.entry = payload.entry
+        state.createRoom.entry_exp = payload.entry_exp
+        state.createRoom.allowChangeEntry = payload.allowChangeEntry
+        state.createRoom.startDatetime = payload.startDatetime
+        state.createRoom.duration = payload.duration
+        state.createRoom.rivalEntryMust = payload.rivalEntryMust
+        state.createRoom.rivalEntryExclusion = payload.rivalEntryExclusion
+        state.createRoom.rivalFg_expMin = payload.rivalFg_expMin
+        state.createRoom.rivalFg_expMax = payload.rivalFg_expMax
+        state.createRoom.rivalTitle_expMin = payload.rivalTitle_expMin
+        state.createRoom.rivalTitle_expMax = payload.rivalTitle_expMax
+        state.createRoom.rivalEntry_expMin = payload.rivalEntry_expMin
+        state.createRoom.rivalEntry_expMax = payload.rivalEntry_expMax
+        state.createRoom.rivalTargetLevelMin = payload.rivalTargetLevelMin
+        state.createRoom.rivalTargetLevelMax = payload.rivalTargetLevelMax
+        state.createRoom.notes = payload.notes
       }
     }
   })

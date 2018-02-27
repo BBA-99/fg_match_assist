@@ -19,11 +19,12 @@
           :items="title_items"
           :rules="titleRules"
           required
+          @change="resetRoom"
         ></v-select>
       </v-flex>
     </v-layout>
     <v-layout v-if="title != null">
-      <v-flex xs6>
+      <v-flex xs5>
         <v-select
           :label="title_expLabel"
           v-model="title_exp"
@@ -35,7 +36,7 @@
         ></v-select>
       </v-flex>
       <v-spacer></v-spacer>
-      <v-flex xs6>
+      <v-flex xs5>
         <v-select
           :label="targetLevelLabel"
           v-model="targetLevel"
@@ -58,6 +59,31 @@
           :rules="entryRules"
           multiple
           chips
+          required
+        ></v-select>
+      </v-flex>
+    </v-layout>
+    <v-layout v-if="title != null">
+      <v-flex xs5>
+        <v-select
+          :label="entry_expLabel"
+          v-model="entry_exp"
+          item-text='display'
+          item-value="value"
+          :items="entry_exp_items"
+          :rules="entry_expRules"
+          required
+        ></v-select>
+      </v-flex>
+      <v-spacer></v-spacer>
+      <v-flex xs5>
+        <v-select
+          :label="targetLevelLabel"
+          v-model="targetLevel"
+          item-text='display'
+          item-value="value"
+          :items="targetLevel_items"
+          :rules="targetLevelRules"
           required
         ></v-select>
       </v-flex>
@@ -86,14 +112,15 @@
 import {DB} from '~/plugins/firebase'
 import {RoomConditionType} from '~/constants/roomCondition'
 import {TitleType} from '~/constants/title'
-import {ExpType as TitleExpType} from '~/constants/exp'
+import {ExpType} from '~/constants/exp'
 import {TargetLevelType} from '~/constants/targetLevel'
 
 export default {
   data () {
     const roomConditionItem = (this.$store.state.locale === 'jp') ? RoomConditionType.jp : RoomConditionType.en
     const titleItem = (this.$store.state.locale === 'jp') ? TitleType.jp : TitleType.en
-    const titleExpItem = (this.$store.state.locale === 'jp') ? TitleExpType.jp : TitleExpType.en
+    const titleExpItem = (this.$store.state.locale === 'jp') ? ExpType.jp : ExpType.en
+    const entryExpItem = (this.$store.state.locale === 'jp') ? ExpType.jp : ExpType.en
     const targetLevelItem = (this.$store.state.locale === 'jp') ? TargetLevelType.jp : TargetLevelType.en
     return {
       valid: true,
@@ -134,6 +161,17 @@ export default {
       entryRules: [
         (v) => (v && v.length === 3) || this.$t('createRoom.entry.format')
       ],
+      // エントリーやり込み度合い
+      entry_exp: this.$store.state.createRoom.entry_exp,
+      entry_expLabel: this.$t('createRoom.entry_exp.label'),
+      entry_exp_items: [
+        { display: entryExpItem.EXP_TYPE_BEGINNER.name, value: 'EXP_TYPE_BEGINNER' },
+        { display: entryExpItem.EXP_TYPE_NOVICE.name, value: 'EXP_TYPE_NOVICE' },
+        { display: entryExpItem.EXP_TYPE_ADVANCE.name, value: 'EXP_TYPE_ADVANCE' },
+        { display: entryExpItem.EXP_TYPE_STRATEGY.name, value: 'EXP_TYPE_STRATEGY' },
+        { display: entryExpItem.EXP_TYPE_RANKER.name, value: 'EXP_TYPE_RANKER' }
+      ],
+      entry_expRules: [ (v) => !!v || this.$t('createRoom.entry_exp.required') ],
       // ノート
       notes: this.$store.state.createRoom.notes,
       notesLabel: this.$t('createRoom.notes.label'),
@@ -161,7 +199,27 @@ export default {
   },
   methods: {
     // タイトルを変えたら初期化
-
+    resetRoom () {
+      console.log('resetRoom')
+      this.title_exp = null
+      this.targetLevel = null
+      this.entry = []
+      this.entry_exp = null
+      this.allowChangeEntry = false
+      this.startDatetime = null
+      this.duration = 0
+      this.rivalEntryMust = []
+      this.rivalEntryExclusion = []
+      this.rivalFg_expMin = null
+      this.rivalFg_expMax = null
+      this.rivalTitle_expMin = null
+      this.rivalTitle_expMax = null
+      this.rivalEntry_expMin = null
+      this.rivalEntry_expMax = null
+      this.rivalTargetLevelMin = null
+      this.rivalTargetLevelMax = null
+      this.notes = ''
+    },
     // ルームを作る
     createRoom () {
       if (!this.$store.state.user) {

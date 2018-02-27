@@ -20,6 +20,11 @@
       "required": "entry is required",
       "format": "You need to select three entries"
     },
+    "entry_exp": {
+      "label": "Entry EXP",
+      "required": "Entry EXP is required",
+      "format": ""
+    },
     "notes": {
       "label": "Room Comment",
       "required": "",
