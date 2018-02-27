@@ -121,7 +121,7 @@
           { icon: 'home', title: this.$t('default.welcome'), to: '/' },
           { icon: 'person', title: this.$t('default.signIn'), to: '/signIn' },
           { icon: 'person', title: this.$t('default.profile'), to: '/profile' },
-          { icon: 'public', title: this.$t('default.createRoom'), to: '/createroom' },
+          { icon: 'public', title: this.$t('default.createRoom'), to: '/createRoom' },
           { icon: 'search', title: this.$t('default.search'), to: '/search' },
           { icon: 'favorite', title: this.$t('default.donation'), to: '/donation' },
           { icon: 'filter_list', title: this.$t('default.exclusionList'), to: '/exclusionlist' }

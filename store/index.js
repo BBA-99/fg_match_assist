@@ -22,7 +22,23 @@ const createStore = () => {
         roomCondition: 'NOT_CREATED',
         title: null,
         title_exp: null,
-        targetLevel: null
+        targetLevel: null,
+        entry: [],
+        entry_exp: null,
+        allowChangeEntry: false,
+        startDatetime: null,
+        duration: 0,
+        rivalEntryMust: [],
+        rivalEntryExclusion: [],
+        rivalFg_expMin: null,
+        rivalFg_expMax: null,
+        rivalTitle_expMin: null,
+        rivalTitle_expMax: null,
+        rivalEntry_expMin: null,
+        rivalEntry_expMax: null,
+        rivalTargetLevelMin: null,
+        rivalTargetLevelMax: null,
+        notes: ''
       }
     },
     getters: {

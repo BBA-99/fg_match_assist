@@ -1,51 +1,56 @@
 {
   "createRoom": {
     "title": {
-      "lavel": "Title",
+      "label": "Title",
       "required": "Title is required",
       "format": ""
     },
     "title_exp": {
-      "lavel": "Title EXP",
+      "label": "Title EXP",
       "required": "Title EXP is required",
       "format": ""
     },
     "targetLevel": {
-      "lavel": "Target level",
+      "label": "Target level",
       "required": "Target level is required",
       "format": ""
-    },    
-    "introduction": {
-      "lavel": "Introduction",
+    },
+    "entry": {
+      "label": "entry",
+      "required": "entry is required",
+      "format": "You need to select three entries"
+    },
+    "notes": {
+      "label": "Room Comment",
       "required": "",
-      "format": "Introduction must be less than 50 characters"
+      "format": "Room Comment must be less than 50 characters"
     },
     "submit": "submit",
     "clear" : "clear"
   },
   "profile": {
     "displayName": {
-      "lavel": "DisplayName",
+      "label": "DisplayName",
       "required": "DisplayName is required",
       "format": "DisplayName must be less than 15 characters"
     },
     "e-mail": {
-      "lavel": "E-mail",
+      "label": "E-mail",
       "required": "E-mail is required",
       "format": "E-mail must be valid"
     },
     "fg_exp": {
-      "lavel": "FightingGame experience",
+      "label": "FightingGame experience",
       "required": "FightingGame experience is required",
       "format": ""
     },
     "region": {
-      "lavel": "Region",
+      "label": "Region",
       "required": "Region is required",
       "format": ""
     },
     "introduction": {
-      "lavel": "Introduction",
+      "label": "Introduction",
       "required": "",
       "format": "Introduction must be less than 50 characters"
     },

@@ -4,20 +4,21 @@ export const TitleType = {
       entry: 3,
       name: 'DBFZ PS',
       CHARACTER: [
-        {displayName: 'キャラ1', value: '01'},
-        {displayName: 'キャラ2', value: '02'},
-        {displayName: 'キャラ3', value: '03'},
-        {displayName: 'キャラ4', value: '04'}
+        {display: 'キャラ1', value: '01'},
+        {display: 'キャラ2', value: '02'},
+        {display: 'キャラ3', value: '03'},
+        {display: 'キャラ4', value: '04'},
+        {display: 'キャラ5', value: '05'}
       ]
     },
     'DBFZ_X': {
       entry: 3,
       name: 'DBFZ X',
       CHARACTER: [
-        {displayName: 'キャラ1', value: '01'},
-        {displayName: 'キャラ2', value: '02'},
-        {displayName: 'キャラ3', value: '03'},
-        {displayName: 'キャラ4', value: '04'}
+        {display: 'キャラ1', value: '01'},
+        {display: 'キャラ2', value: '02'},
+        {display: 'キャラ3', value: '03'},
+        {display: 'キャラ4', value: '04'}
       ]
     }
   },
@@ -26,20 +27,21 @@ export const TitleType = {
       entry: 3,
       name: 'DBFZ PS',
       CHARACTER: [
-        {displayName: 'char1', value: '01'},
-        {displayName: 'char2', value: '02'},
-        {displayName: 'char3', value: '03'},
-        {displayName: 'char4', value: '04'}
+        {display: 'char1', value: '01'},
+        {display: 'char2', value: '02'},
+        {display: 'char3', value: '03'},
+        {display: 'char4', value: '04'},
+        {display: 'char5', value: '05'}
       ]
     },
     'DBFZ_X': {
       entry: 3,
       name: 'DBFZ X',
       CHARACTER: [
-        {displayName: 'char1', value: '01'},
-        {displayName: 'char2', value: '02'},
-        {displayName: 'char3', value: '03'},
-        {displayName: 'char4', value: '04'}
+        {display: 'char1', value: '01'},
+        {display: 'char2', value: '02'},
+        {display: 'char3', value: '03'},
+        {display: 'char4', value: '04'}
       ]
     }
   }

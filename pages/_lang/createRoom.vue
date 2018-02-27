@@ -12,7 +12,7 @@
     <v-layout>
       <v-flex xs12 >
         <v-select
-          :label="titleLavel"
+          :label="titleLabel"
           v-model="title"
           item-text='display'
           item-value="value"
@@ -25,7 +25,7 @@
     <v-layout v-if="title != null">
       <v-flex xs6>
         <v-select
-          :label="title_expLavel"
+          :label="title_expLabel"
           v-model="title_exp"
           item-text='display'
           item-value="value"
@@ -34,9 +34,10 @@
           required
         ></v-select>
       </v-flex>
+      <v-spacer></v-spacer>
       <v-flex xs6>
         <v-select
-          :label="targetLevelLavel"
+          :label="targetLevelLabel"
           v-model="targetLevel"
           item-text='display'
           item-value="value"
@@ -46,12 +47,27 @@
         ></v-select>
       </v-flex>
     </v-layout>
-    <v-layout>
+    <v-layout  v-if="title != null">
+      <v-flex xs12 >
+        <v-select
+          :label="entryLabel"
+          v-model="entry"
+          item-text='display'
+          item-value="value"
+          :items="entryItems"
+          :rules="entryRules"
+          multiple
+          chips
+          required
+        ></v-select>
+      </v-flex>
+    </v-layout>
+    <v-layout  v-if="title != null">
       <v-flex xs12 >
         <v-text-field
-          :label="introductionLavel"
-          v-model="introduction"
-          :rules="introductionRules"
+          :label="notesLabel"
+          v-model="notes"
+          :rules="notesRules"
           :counter="50"
           textarea
         ></v-text-field>
@@ -81,41 +97,48 @@ export default {
     const targetLevelItem = (this.$store.state.locale === 'jp') ? TargetLevelType.jp : TargetLevelType.en
     return {
       valid: true,
+      // ルームステータス
       roomCondition: roomConditionItem[this.$store.state.createRoom.roomCondition],
       // タイトル
       title: this.$store.state.createRoom.title,
-      titleLavel: this.$t('createRoom.title.lavel'),
+      titleLabel: this.$t('createRoom.title.label'),
       title_items: [
-        { display: titleItem.DBFZ_PS.name, value: titleItem.DBFZ_PS.name },
-        { display: titleItem.DBFZ_X.name, value: titleItem.DBFZ_X.name }
+        { display: titleItem.DBFZ_PS.name, value: 'DBFZ_PS' },
+        { display: titleItem.DBFZ_X.name, value: 'DBFZ_X' }
       ],
       titleRules: [ (v) => !!v || this.$t('createRoom.title.required') ],
-      // やり込み度合い
+      // タイトルやり込み度合い
       title_exp: this.$store.state.createRoom.title_exp,
-      title_expLavel: this.$t('createRoom.title_exp.lavel'),
+      title_expLabel: this.$t('createRoom.title_exp.label'),
       title_exp_items: [
-        { display: titleExpItem.EXP_TYPE_BEGINNER.name, value: titleExpItem.EXP_TYPE_BEGINNER.name },
-        { display: titleExpItem.EXP_TYPE_NOVICE.name, value: titleExpItem.EXP_TYPE_NOVICE.name },
-        { display: titleExpItem.EXP_TYPE_ADVANCE.name, value: titleExpItem.EXP_TYPE_ADVANCE.name },
-        { display: titleExpItem.EXP_TYPE_STRATEGY.name, value: titleExpItem.EXP_TYPE_STRATEGY.name },
-        { display: titleExpItem.EXP_TYPE_RANKER.name, value: titleExpItem.EXP_TYPE_RANKER.name }
+        { display: titleExpItem.EXP_TYPE_BEGINNER.name, value: 'EXP_TYPE_BEGINNER' },
+        { display: titleExpItem.EXP_TYPE_NOVICE.name, value: 'EXP_TYPE_NOVICE' },
+        { display: titleExpItem.EXP_TYPE_ADVANCE.name, value: 'EXP_TYPE_ADVANCE' },
+        { display: titleExpItem.EXP_TYPE_STRATEGY.name, value: 'EXP_TYPE_STRATEGY' },
+        { display: titleExpItem.EXP_TYPE_RANKER.name, value: 'EXP_TYPE_RANKER' }
       ],
       title_expRules: [ (v) => !!v || this.$t('createRoom.title_exp.required') ],
       // 目標レベル
       targetLevel: this.$store.state.createRoom.targetLevel,
-      targetLevelLavel: this.$t('createRoom.targetLevel.lavel'),
+      targetLevelLabel: this.$t('createRoom.targetLevel.label'),
       targetLevel_items: [
-        { display: targetLevelItem.TARGETLEVEL_TYPE_DEPARTURE_BEGINNER.name, value: targetLevelItem.TARGETLEVEL_TYPE_DEPARTURE_BEGINNER.name },
-        { display: targetLevelItem.TARGETLEVEL_TYPE_ADVANCE.name, value: targetLevelItem.TARGETLEVEL_TYPE_ADVANCE.name },
-        { display: targetLevelItem.TARGETLEVEL_TYPE_HIGHER_RANK.name, value: targetLevelItem.TARGETLEVEL_TYPE_HIGHER_RANK.name },
-        { display: targetLevelItem.TARGETLEVEL_TYPE_ATHLETE.name, value: targetLevelItem.TARGETLEVEL_TYPE_ATHLETE.name }
+        { display: targetLevelItem.TARGETLEVEL_TYPE_DEPARTURE_BEGINNER.name, value: 'TARGETLEVEL_TYPE_DEPARTURE_BEGINNER' },
+        { display: targetLevelItem.TARGETLEVEL_TYPE_ADVANCE.name, value: 'TARGETLEVEL_TYPE_ADVANCE' },
+        { display: targetLevelItem.TARGETLEVEL_TYPE_HIGHER_RANK.name, value: 'TARGETLEVEL_TYPE_HIGHER_RANK' },
+        { display: targetLevelItem.TARGETLEVEL_TYPE_ATHLETE.name, value: 'TARGETLEVEL_TYPE_ATHLETE' }
       ],
       targetLevelRules: [ (v) => !!v || this.$t('createRoom.targetLevel.required') ],
-
-      introduction: this.$store.state.profile.introduction,
-      introductionLavel: this.$t('profile.introduction.lavel'),
-      introductionRules: [
-        (v) => (v && v.length <= 50) || this.$t('profile.introduction.format')
+      // エントリー
+      entry: this.$store.state.createRoom.entry,
+      entryLabel: this.$t('createRoom.entry.label'),
+      entryRules: [
+        (v) => (v && v.length === 3) || this.$t('createRoom.entry.format')
+      ],
+      // ノート
+      notes: this.$store.state.createRoom.notes,
+      notesLabel: this.$t('createRoom.notes.label'),
+      notesRules: [
+        (v) => (v && v.length <= 50) || this.$t('createRoom.notes.format')
       ]
     }
   },
@@ -130,9 +153,16 @@ export default {
   },
   computed: {
     activeUser () { return this.$store.getters.activeUser },
-    activeProfile () { return this.$store.getters.activeProfile }
+    activeProfile () { return this.$store.getters.activeProfile },
+    entryItems () {
+      const titleItem = (this.$store.state.locale === 'jp') ? TitleType.jp : TitleType.en
+      return titleItem[this.title]['CHARACTER']
+    }
   },
   methods: {
+    // タイトルを変えたら初期化
+
+    // ルームを作る
     createRoom () {
       if (!this.$store.state.user) {
         // 未ログインならリダイレクト

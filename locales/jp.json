@@ -1,51 +1,56 @@
 {
   "createRoom": {
     "title": {
-      "lavel": "タイトル",
+      "label": "タイトル",
       "required": "タイトルの入力は必須です",
       "format": ""
     },
     "title_exp": {
-      "lavel": "このタイトルのやりこみ度合い",
+      "label": "このタイトルのやりこみ度合い",
       "required": "やりこみ度合いの入力は必須です",
       "format": ""
     },
     "targetLevel": {
-      "lavel": "目標レベル",
+      "label": "目標レベル",
       "required": "目標レベルの入力は必須です",
       "format": ""
     },
-    "introduction": {
-      "lavel": "紹介文",
+    "entry": {
+      "label": "エントリー",
+      "required": "エントリーの入力は必須です",
+      "format": "エントリーは３つ選択する必要があります"
+    }, 
+    "notes": {
+      "label": "コメント",
       "required": "",
-      "format": "紹介文は50文字以内で入力してください"
+      "format": "コメントは50文字以内で入力してください"
     },
     "submit": "登録",
     "clear" : "クリア"
   },
   "profile": {
     "displayName": {
-      "lavel": "表示する名前",
+      "label": "表示する名前",
       "required": "表示する名前の入力は必須です",
       "format": "表示する名前は15文字以内で入力してください"
     },
     "e-mail": {
-      "lavel": "E-mail",
+      "label": "E-mail",
       "required": "E-mailは必須入力です",
       "format": "無効なE-mailの形式です"
     },
     "fg_exp": {
-      "lavel": "格闘ゲーム経験",
+      "label": "格闘ゲーム経験",
       "required": "格闘ゲーム経験の入力は必須です",
       "format": ""
     },
     "region": {
-      "lavel": "地域",
+      "label": "地域",
       "required": "地域の入力は必須です",
       "format": ""
     },
     "introduction": {
-      "lavel": "紹介文",
+      "label": "紹介文",
       "required": "",
       "format": "紹介文は50文字以内で入力してください"
     },
